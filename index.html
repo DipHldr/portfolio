@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Deep Halder - Software Engineer, Full Stack Developer, and Competitive Programmer. Showcasing innovative projects and technical expertise." />
+    <meta name="keywords" content="Deep Halder, Software Engineer, Full Stack Developer, Competitive Programming, React, Next.js, C++, Python, Portfolio" />
+    <meta name="author" content="Deep Halder" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Deep Halder - Software Engineer Portfolio" />
+    <meta property="og:description" content="Innovative Software Engineer specializing in Full Stack Development and Competitive Programming" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <title>Deep Halder - Software Engineer Portfolio</title>
+    
+    <style>
+      /* Prevent flash of unstyled content */
+      body { 
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: #111827;
+        color: #ffffff;
+      }
+      
+      /* Loading spinner */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+      }
+      
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #374151;
+        border-top: 3px solid #3B82F6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
