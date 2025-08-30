@@ -63,7 +63,7 @@ export default function ThreeBackground() {
 				}}>
 				<Starfield />
 				<EffectComposer
-					disableNormalPass
+					enableNormalPass={false}
 					multisampling={0}
 					frameBufferType={THREE.HalfFloatType}>
 					<Bloom

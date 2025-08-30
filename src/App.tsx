@@ -9,7 +9,7 @@ import Footer from './components/Footer/Footer';
 
 function App() {
 	return (
-		<div className='min-h-screen bg-gray-900 text-white overflow-x-hidden'>
+		<div className='h-screen bg-gray-900 text-white overflow-x-hidden'>
 			<Hero />
 			<About />
 			<Education />
