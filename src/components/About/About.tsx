@@ -113,7 +113,8 @@ export default function About() {
 									size={16}
 									className='text-slate-400'
 								/>{' '}
-								linkedin.com/in/deep-halder • github.com/your-username
+								<a href="https://www.linkedin.com/in/deep-halder-2ba050289/" target="_blank">linkedin</a>•
+								<a href="https://github.com/DipHldr" target="_blank">Github</a>
 							</li>
 						</ul>
 
