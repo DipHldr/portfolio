@@ -20,7 +20,7 @@ function generateRandomPoints(count: number, radius: number): Float32Array {
 
 function Starfield() {
 	const ref = useRef<THREE.Points>(null!);
-	const positions = useMemo(() => generateRandomPoints(2500, 1.6), []);
+	const positions = useMemo(() => generateRandomPoints(1500, 1.6), []);
 
 	useFrame((_, delta) => {
 		ref.current.rotation.x -= delta / 32;
@@ -49,7 +49,7 @@ function Starfield() {
 
 export default function ThreeBackground() {
 	return (
-		<div className='absolute inset-0 z-0 pointer-events-none'>
+		<div className='absolute inset-0 z-0 pointer-events-none h-screen w-screen'>
 			<Canvas
 				dpr={[1, 2]}
 				camera={{ position: [0, 0, 1], fov: 50 }}
@@ -60,6 +60,9 @@ export default function ThreeBackground() {
 				}}
 				onCreated={({ gl }) => {
 					gl.setClearColor(0x000000, 0); // fully transparent
+					const canvas = gl.domElement;
+					canvas.addEventListener('webglcontextlost', (e) => e.preventDefault());
+					canvas.addEventListener('webglcontextrestored', () => console.info('WebGL restored'));
 				}}>
 				<Starfield />
 				<EffectComposer

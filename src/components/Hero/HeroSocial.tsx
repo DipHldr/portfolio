@@ -8,6 +8,7 @@ export default function HeroSocial({ links }: { links: Link[] }) {
 				<a
 					key={i}
 					href={l.href}
+					target="_blank"
 					aria-label={l.label}
 					className='hover:text-cyan-300 transition-colors'>
 					{l.icon}

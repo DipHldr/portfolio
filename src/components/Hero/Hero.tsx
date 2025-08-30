@@ -65,16 +65,16 @@ export default function Hero() {
 									{
 										icon: <Code2 size={16} />,
 										label: 'Projects',
-										value: '12+',
+										value: '15+',
 									},
 									{
 										icon: <Cpu size={16} />,
 										label: 'Microservices',
-										value: '7',
+										value: '3',
 									},
 									{
 										icon: <Trophy size={16} />,
-										label: 'CP Problems',
+										label: 'DSA Problems',
 										value: '1000+',
 									},
 								]}
@@ -100,17 +100,17 @@ export default function Hero() {
 							<HeroSocial
 								links={[
 									{
-										href: 'https://github.com',
+										href: 'https://github.com/DipHldr',
 										label: 'GitHub',
 										icon: <Github size={22} />,
 									},
 									{
-										href: 'https://linkedin.com',
+										href: 'https://www.linkedin.com/in/deep-halder-2ba050289/',
 										label: 'LinkedIn',
 										icon: <Linkedin size={22} />,
 									},
 									{
-										href: 'mailto:contact@example.com',
+										href: 'mailto:deephalder122002@gmail.com',
 										label: 'Email',
 										icon: <Mail size={22} />,
 									},
@@ -119,14 +119,14 @@ export default function Hero() {
 
 							<HeroTechPills
 								items={[
+									'Javascript',
 									'TypeScript',
 									'React',
 									'Node.js',
-									'Go',
-									'Microservices',
 									'PostgreSQL',
+									'Microservices',
+									'RabbitMq',
 									'Docker',
-									'Kubernetes',
 								]}
 							/>
 						</div>

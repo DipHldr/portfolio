@@ -56,15 +56,15 @@ export default function About() {
 					<div className='mx-auto mt-3 h-[3px] w-24 rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400' />
 					<div className='mt-5 flex flex-wrap justify-center gap-3'>
 						<Stat
-							value='12+'
+							value='15+'
 							label='Projects'
 						/>
 						<Stat
 							value='1000+'
-							label='CP Problems'
+							label='DSA Problems'
 						/>
 						<Stat
-							value='7'
+							value='3'
 							label='Microservices'
 						/>
 					</div>
@@ -76,15 +76,10 @@ export default function About() {
 					<div>
 						<h3 className='text-base font-semibold text-white'>Profile</h3>
 						<p className='mt-3 text-slate-300 leading-relaxed'>
-							Software engineer specializing in scalable backends and clear APIs
-							using TypeScript/Node.js and Go, with strong foundations in
-							algorithms and systems. Focused on reliability, observability, and
-							measurable outcomes.
+							I build reliable backends and clear APIs, mostly using JavaScript/Node.js and Python, with a solid grounding in C++ and algorithms. I enjoy designing scalable systems, working with microservices, Docker, and message queues like RabbitMQ, and continuously learning new ways to make software efficient and maintainable.
 						</p>
 						<p className='mt-3 text-slate-300 leading-relaxed'>
-							Competitive programming (1000+ problems) sharpens decomposition
-							and edge‑case thinking, informing pragmatic designs under
-							constraints.
+							Solving 1000+ algorithmic problems has sharpened my problem-solving, edge-case thinking, and ability to design pragmatic solutions under constraints.
 						</p>
 
 						<ul className='mt-6 space-y-3 text-sm'>
@@ -125,7 +120,8 @@ export default function About() {
 						{/* Gradient CTAs */}
 						<div className='mt-7 flex flex-col sm:flex-row gap-3'>
 							<a
-								href='/resume.pdf'
+								href="/resume.pdf" 
+								download="DeepHalder_Resume.pdf"
 								className='inline-flex items-center justify-center px-5 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 transition-all'>
 								Download Résumé
 							</a>
@@ -146,7 +142,7 @@ export default function About() {
 									size={18}
 									className='mt-0.5 text-cyan-400'
 								/>
-								Solved 600+ problems across LeetCode, Codeforces (1114), and
+								Solved 1000+ problems across LeetCode, Codeforces (1114), and
 								GFG.
 							</li>
 							<li className='flex items-start gap-3'>
@@ -174,21 +170,21 @@ export default function About() {
 									size={16}
 									className='text-cyan-400'
 								/>{' '}
-								TS/Node
+								LeetCode
 							</div>
 							<div className='flex items-center gap-2 text-slate-200'>
 								<Cpu
 									size={16}
 									className='text-sky-400'
 								/>{' '}
-								Go
+								<a href="">Codeforces</a>
 							</div>
 							<div className='flex items-center gap-2 text-slate-200'>
 								<Trophy
 									size={16}
 									className='text-indigo-400'
 								/>{' '}
-								CP
+								AI/ML
 							</div>
 						</div>
 					</div>
@@ -203,28 +199,28 @@ export default function About() {
 								size={16}
 								className='mt-0.5 text-cyan-400'
 							/>{' '}
-							Clear APIs, tracing, SLOs, reliability budgets
+							Scalable backend systems, REST APIs, and microservices
 						</li>
 						<li className='flex items-start gap-2'>
 							<Target
 								size={16}
 								className='mt-0.5 text-sky-400'
 							/>{' '}
-							Query performance, caching, data modeling
+							WebSockets, RabbitMQ, and event-driven architectures
 						</li>
 						<li className='flex items-start gap-2'>
 							<Target
 								size={16}
 								className='mt-0.5 text-indigo-400'
 							/>{' '}
-							System design practice and review cadence
+							Problem-solving with Python, C++, and algorithmic thinking
 						</li>
 						<li className='flex items-start gap-2'>
 							<Target
 								size={16}
 								className='mt-0.5 text-teal-400'
 							/>{' '}
-							Network science: influence maximization, critical nodes
+							System design, database modeling, and performance optimization
 						</li>
 					</ul>
 				</div>

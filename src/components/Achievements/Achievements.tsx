@@ -5,8 +5,8 @@ import { Trophy, Code, Users, Heart } from 'lucide-react';
 const achievements = [
   {
     icon: Code,
-    title: '600+ Problems Solved',
-    description: 'Competitive programming across LeetCode, Codeforces, and GeeksforGeeks',
+    title: '1000+ Problems Solved',
+    description: 'Across LeetCode, Codeforces, GeeksforGeeks, CodingNinjas and TopCoder',
     color: 'from-purple-500 to-blue-600',
     shadowColor: 'purple-500/25',
   },
