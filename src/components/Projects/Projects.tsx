@@ -34,7 +34,8 @@ const projects = [
     description: 'Smart resume analysis tool with AI-powered recommendations',
     longDescription: 'An AI-powered resume analysis tool that provides intelligent feedback and recommendations. Features modern state management with Zustand, client-side routing, and integration with Puter for file processing.',
     techStack: ['React Router', 'Zustand', 'Puter', 'Tailwind CSS', 'AI/ML'],
-    githubUrl: 'https://github.com/DipHldr/resume-analyser',
+    githubUrl: 'https://github.com/DipHldr/AI-Based-Resume-Analyser',
+    liveUrl: 'https://ai-based-resume-analyser-khaki.vercel.app/',
     gradient: 'from-green-500 to-teal-600',
   },
   {

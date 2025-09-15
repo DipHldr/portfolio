@@ -44,6 +44,7 @@ const skillCategories: Category[] = [
 			{ name: 'Express.js', color: '#000000', type: 'box' },
 			{ name: 'WebSockets', color: '#4A90E2', type: 'sphere' },
 			{ name: 'RabbitMQ', color: '#FF6600', type: 'box' },
+			{ name: 'Microservices', color: '#AF6643', type: 'box' },
 		],
 	},
 	{
