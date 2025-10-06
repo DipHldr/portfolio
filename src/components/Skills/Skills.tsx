@@ -22,10 +22,14 @@ const skillCategories: Category[] = [
 		skills: [
 			{ name: 'JavaScript', color: '#F7DF1E', type: 'box' },
 			{ name: 'TypeScript', color: '#3178C6', type: 'sphere' },
+			{ name: 'C', color: '#00599C', type: 'box' },
 			{ name: 'C++', color: '#00599C', type: 'box' },
 			{ name: 'Java', color: '#ED8B00', type: 'sphere' },
 			{ name: 'Python', color: '#3776AB', type: 'box' },
 			{ name: 'SQL', color: '#336791', type: 'sphere' },
+			{ name: 'Bash', color: '#4EAA25', type: 'box' },
+			{ name: 'HTML', color: '#E34F26', type: 'sphere' },
+			{ name: 'CSS', color: '#1572B6', type: 'box' },
 		],
 	},
 	{
@@ -35,6 +39,7 @@ const skillCategories: Category[] = [
 			{ name: 'Next.js', color: '#ffffff', type: 'box' },
 			{ name: 'Tailwind', color: '#38B2AC', type: 'sphere' },
 			{ name: 'Zustand', color: '#FF6B6B', type: 'box' },
+			{ name: 'ShadCN UI', color: '#000000', type: 'box' },
 		],
 	},
 	{
@@ -45,6 +50,9 @@ const skillCategories: Category[] = [
 			{ name: 'WebSockets', color: '#4A90E2', type: 'sphere' },
 			{ name: 'RabbitMQ', color: '#FF6600', type: 'box' },
 			{ name: 'Microservices', color: '#AF6643', type: 'box' },
+			{ name: 'gRPC', color: '#28B446', type: 'box' },
+			{ name: 'REST APIs', color: '#FF5733', type: 'sphere' },
+			{ name: 'Redis', color: '#DC382D', type: 'box' },
 		],
 	},
 	{
