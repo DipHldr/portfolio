@@ -65,13 +65,9 @@ export default function Hero() {
 									{
 										icon: <Code2 size={16} />,
 										label: 'Projects',
-										value: '15+',
+										value: '25+',
 									},
-									{
-										icon: <Cpu size={16} />,
-										label: 'Microservices',
-										value: '3',
-									},
+									
 									{
 										icon: <Trophy size={16} />,
 										label: 'DSA Problems',

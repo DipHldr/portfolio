@@ -118,9 +118,9 @@ export default function About() {
           </motion.p>
 
           <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6'>
-            <Stat value='15+' label='Projects Completed' delay={0.1} />
+            <Stat value='25+' label='Projects Completed' delay={0.1} />
             <Stat value='1000+' label='DSA Problems Solved' delay={0.2} />
-            <Stat value='3' label='Microservices Built' delay={0.3} />
+            <Stat value='5+' label='Hackathons Participated' delay={0.3} />
           </div>
         </header>
 
