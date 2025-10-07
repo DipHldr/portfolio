@@ -13,6 +13,7 @@ import {
   Download,
   MessageSquare,
   Sparkles,
+  Code,
 } from 'lucide-react';
 
 function Stat({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
@@ -258,9 +259,9 @@ export default function About() {
 
             <div className='mt-6 grid grid-cols-3 gap-3'>
               {[
-                { icon: Code2, label: 'LeetCode', href: '#', color: 'cyan' },
-                { icon: Cpu, label: 'Codeforces', href: '#', color: 'sky' },
-                { icon: Trophy, label: 'AI/ML', href: '#', color: 'indigo' },
+                { icon: Code2, label: 'LeetCode', href: 'https://leetcode.com/u/chalbazzcharlie/', color: 'cyan' },
+                { icon: Code, label: 'Codeforces', href: 'https://codeforces.com/profile/Charlie123', color: 'sky' },
+                { icon: Github, label: 'Github', href: 'https://github.com/DipHldr', color: 'indigo' },
               ].map((item, i) => (
                 <motion.a
                   key={item.label}
