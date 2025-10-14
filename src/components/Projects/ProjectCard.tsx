@@ -1,181 +1,236 @@
 import { motion } from 'framer-motion';
 import { useState, MouseEvent } from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Sparkles } from 'lucide-react';
 
 interface Project {
-	title: string;
-	description: string;
-	longDescription: string;
-	techStack: string[];
-	githubUrl: string;
-	liveUrl?: string;
-	// Tailwind stops, e.g. "from-cyan-500 via-blue-500 to-indigo-600"
-	gradient: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  techStack: string[];
+  githubUrl: string;
+  liveUrl?: string;
+  gradient: string;
 }
 
 interface ProjectCardProps {
-	project: Project;
-	index: number;
+  project: Project;
+  index: number;
 }
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
-	const [isFlipped, setIsFlipped] = useState(false);
-	const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-	const gradientStops =
-		project.gradient?.trim() || 'from-cyan-500 via-blue-500 to-indigo-600';
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePosition({ x, y });
+  };
 
-	function handleMove(e: MouseEvent<HTMLDivElement>) {
-		const el = e.currentTarget;
-		const rect = el.getBoundingClientRect();
-		const x = e.clientX - rect.left;
-		const y = e.clientY - rect.top;
-		const midX = rect.width / 2;
-		const midY = rect.height / 2;
-		const ry = ((x - midX) / midX) * 6; // left-right
-		const rx = -((y - midY) / midY) * 6; // up-down
-		setTilt({ rx, ry });
-	}
+  const handleMouseLeave = () => {
+    setMousePosition({ x: 50, y: 50 });
+    setIsFlipped(false);
+  };
 
-	function resetTilt() {
-		setTilt({ rx: 0, ry: 0 });
-	}
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="relative h-[480px] group perspective-1000"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <motion.div
+        className="relative w-full h-full"
+        style={{
+          transformStyle: 'preserve-3d',
+        }}
+        animate={{
+          rotateY: isFlipped ? 180 : 0,
+        }}
+        transition={{ duration: 0.7, type: 'spring', stiffness: 100 }}
+      >
+        <div
+          className="absolute inset-0 backface-hidden"
+          style={{ backfaceVisibility: 'hidden' }}
+        >
+          <motion.div
+            className="relative h-full rounded-3xl overflow-hidden cursor-pointer"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setIsFlipped(true)}
+          >
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 blur-3xl`}
+              style={{
+                transform: `translate(${(mousePosition.x - 50) * 0.2}px, ${(mousePosition.y - 50) * 0.2}px)`,
+              }}
+            />
 
-	return (
-		<motion.div
-			initial={{ opacity: 0, y: 48 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6, delay: index * 0.08 }}
-			className='relative group h-[420px] sm:h-[440px] select-none'
-			onMouseEnter={() => setIsFlipped(true)}
-			onMouseLeave={() => {
-				setIsFlipped(false);
-				resetTilt();
-			}}
-			onMouseMove={handleMove}
-			onClick={() => setIsFlipped((v) => !v)} // tap/keyboard friendly
-			role='button'
-			tabIndex={0}
-			onKeyDown={(e) =>
-				(e.key === 'Enter' || e.key === ' ') && setIsFlipped((v) => !v)
-			}
-			aria-pressed={isFlipped}>
-			{/* Outer tilt wrapper */}
-			<div
-				className='h-full w-full perspective-[1400px]'
-				style={{
-					transform: isFlipped
-						? undefined
-						: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-					transition: 'transform 200ms ease',
-				}}>
-				{/* Inner flipper */}
-				<div
-					className={`relative h-full w-full transition-transform duration-700 will-change-transform [transform-style:preserve-3d] ${
-						isFlipped ? '[transform:rotateY(180deg)]' : ''
-					}`}>
-					{/* FRONT */}
-					<div className='absolute inset-0 h-full w-full [backface-visibility:hidden] rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60'>
-						{/* Gradient border shell */}
-						<div
-							className={`relative h-full rounded-2xl p-[1px] bg-gradient-to-br ${gradientStops}`}>
-							{/* Glass surface */}
-							<div className='relative h-full rounded-[calc(theme(borderRadius.2xl)-1px)] p-6 flex flex-col justify-between overflow-hidden bg-slate-900/55 backdrop-blur-md ring-1 ring-white/10'>
-								{/* Subtle shine sweep */}
-								<div className='pointer-events-none absolute -top-1/2 left-0 h-[200%] w-1/2 bg-gradient-to-b from-white/15 to-transparent rotate-45 -translate-x-[150%] group-hover:translate-x-[250%] transition-transform duration-[1200ms] ease-out' />
-								{/* Ambient blob */}
-								<div className='pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-white/10 blur-3xl' />
+            <div className="relative h-full rounded-3xl bg-gradient-to-br from-gray-900/95 to-gray-800/95 backdrop-blur-xl border border-white/10 overflow-hidden">
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(255,255,255,0.06), transparent 40%)`,
+                }}
+              />
 
-								<div className='relative z-10'>
-									<h3 className='text-2xl font-bold text-white tracking-tight'>
-										{project.title}
-									</h3>
-									<p className='mt-3 text-white/90 leading-relaxed'>
-										{project.description}
-									</p>
-								</div>
+              <div className="relative h-full p-8 flex flex-col justify-between z-10">
+                <div>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`p-3 rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg`}>
+                      <Sparkles className="w-6 h-6 text-white" />
+                    </div>
+                    <motion.div
+                      className="text-xs font-medium text-gray-400 bg-gray-800/50 px-3 py-1.5 rounded-full border border-gray-700/50"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Click to explore
+                    </motion.div>
+                  </div>
 
-								<div className='relative z-10'>
-									<div className='flex flex-wrap gap-2'>
-										{project.techStack.slice(0, 3).map((tech) => (
-											<span
-												key={tech}
-												className='rounded-full bg-white/15 text-white px-3 py-1 text-sm font-medium backdrop-blur-[1.5px] ring-1 ring-white/20'>
-												{tech}
-											</span>
-										))}
-										{project.techStack.length > 3 && (
-											<span className='rounded-full bg-white/15 text-white px-3 py-1 text-sm font-medium backdrop-blur-[1.5px] ring-1 ring-white/20'>
-												+{project.techStack.length - 3} more
-											</span>
-										)}
-									</div>
-								</div>
+                  <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">
+                    {project.title}
+                  </h3>
 
-								<div className='absolute bottom-3 right-4 text-white/70 text-xs tracking-wide'>
-									Hover or tap to flip
-								</div>
-							</div>
-						</div>
-					</div>
+                  <p className="text-gray-300 leading-relaxed text-lg">
+                    {project.description}
+                  </p>
+                </div>
 
-					{/* BACK */}
-					<div className='absolute inset-0 h-full w-full rounded-2xl [backface-visibility:hidden] [transform:rotateY(180deg)]'>
-						{/* Border shell with subtle gradient ring */}
-						<div className='relative h-full rounded-2xl p-[1px] bg-gradient-to-br from-white/20 via-white/10 to-white/20'>
-							<div className='h-full rounded-[calc(theme(borderRadius.2xl)-1px)] p-6 flex flex-col justify-between bg-slate-900/75 backdrop-blur-md ring-1 ring-white/10 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]'>
-								<div>
-									<h3 className='text-xl font-bold text-white tracking-tight'>
-										{project.title}
-									</h3>
+                <div>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.techStack.slice(0, 4).map((tech, i) => (
+                      <motion.span
+                        key={tech}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.1 + i * 0.05 }}
+                        className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-medium text-gray-200"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                    {project.techStack.length > 4 && (
+                      <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-medium text-gray-200">
+                        +{project.techStack.length - 4}
+                      </span>
+                    )}
+                  </div>
 
-									<p className='mt-3 text-slate-200 leading-relaxed'>
-										{project.longDescription}
-									</p>
+                  <div className={`h-1 rounded-full bg-gradient-to-r ${project.gradient} opacity-50`} />
+                </div>
+              </div>
 
-									<div className='mt-5'>
-										<h4 className='text-xs font-semibold text-slate-300 uppercase tracking-wider'>
-											Tech Stack
-										</h4>
-										<div className='mt-2 flex flex-wrap gap-2'>
-											{project.techStack.map((tech) => (
-												<span
-													key={tech}
-													className='rounded-md border border-cyan-400/25 bg-gradient-to-r from-cyan-500/10 to-fuchsia-500/10 text-cyan-200 px-2 py-1 text-sm'>
-													{tech}
-												</span>
-											))}
-										</div>
-									</div>
-								</div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-white/5 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            </div>
+          </motion.div>
+        </div>
 
-								<div className='flex gap-3'>
-									<a
-										href={project.githubUrl}
-										target='_blank'
-										rel='noopener noreferrer'
-										className='inline-flex items-center gap-2 rounded-lg bg-white/5 px-4 py-2 text-slate-100 hover:bg-white/10 transition-colors ring-1 ring-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60'>
-										<Github className='h-4 w-4' />
-										Code
-									</a>
+        <div
+          className="absolute inset-0 backface-hidden"
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+        >
+          <motion.div
+            className="relative h-full rounded-3xl overflow-hidden"
+            onClick={() => setIsFlipped(false)}
+          >
+            <div className="relative h-full rounded-3xl bg-gradient-to-br from-gray-900/98 to-gray-800/98 backdrop-blur-xl border border-white/10 overflow-hidden">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(255,255,255,0.04), transparent 40%)`,
+                }}
+              />
 
-									{project.liveUrl && (
-										<a
-											href={project.liveUrl}
-											target='_blank'
-											rel='noopener noreferrer'
-											className='inline-flex items-center gap-2 rounded-lg px-4 py-2 text-white bg-gradient-to-r from-cyan-600 to-fuchsia-600 hover:from-cyan-500 hover:to-fuchsia-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60'>
-											<ExternalLink className='h-4 w-4' />
-											Live Demo
-										</a>
-									)}
-								</div>
-							</div>
-						</div>
-					</div>
-					{/* END BACK */}
-				</div>
-			</div>
-		</motion.div>
-	);
+              <div className="relative h-full p-8 flex flex-col z-10">
+                <div className="flex items-start justify-between mb-4 flex-shrink-0">
+                  <h3 className="text-2xl font-bold text-white tracking-tight">
+                    {project.title}
+                  </h3>
+                  <motion.button
+                    whileHover={{ rotate: 180 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-gray-400 hover:text-white transition-colors flex-shrink-0"
+                    onClick={() => setIsFlipped(false)}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </motion.button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0 pr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                  <p className="text-gray-300 leading-relaxed mb-6">
+                    {project.longDescription}
+                  </p>
+
+                  <div className="mb-4">
+                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <div className="w-8 h-px bg-gradient-to-r from-cyan-500 to-transparent" />
+                      Tech Stack
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {project.techStack.map((tech) => (
+                        <motion.div
+                          key={tech}
+                          whileHover={{ scale: 1.05, x: 4 }}
+                          className={`px-3 py-2 rounded-lg bg-gradient-to-br ${project.gradient} bg-opacity-10 border border-white/10 text-sm font-medium text-gray-200 flex items-center gap-2`}
+                        >
+                          <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${project.gradient}`} />
+                          {tech}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3 mt-6 flex-shrink-0">
+                  <div className="flex gap-3">
+                    <motion.a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-white font-medium hover:bg-white/10 transition-all group"
+                    >
+                      <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                      View Code
+                    </motion.a>
+
+                    {project.liveUrl && (
+                      <motion.a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r ${project.gradient} text-white font-medium shadow-lg hover:shadow-xl transition-all group`}
+                      >
+                        <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        Live Demo
+                      </motion.a>
+                    )}
+                  </div>
+
+                  {!project.liveUrl && (
+                    <div className="text-center text-xs text-gray-500">
+                      Source code available on GitHub
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${project.gradient} opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2`} />
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
 }
