@@ -86,7 +86,7 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
@@ -94,14 +94,14 @@ export default function Projects() {
           >
             <Rocket className="w-4 h-4 text-cyan-400" />
             <span className="text-sm font-medium text-cyan-400">Featured Work</span>
-          </motion.div>
+          </motion.div> */}
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-              Selected
+              Featured
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent">
+            {/* <br /> */}
+            <span className="ml-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent">
               Projects
             </span>
           </h2>
