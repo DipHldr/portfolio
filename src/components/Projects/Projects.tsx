@@ -12,14 +12,16 @@ const projects = [
     githubUrl: 'https://github.com/DipHldr/pitch_your_startup',
     liveUrl: 'https://pitch-your-startup-6t33.vercel.app/',
     gradient: 'from-blue-500 to-cyan-600',
+    icon: 'Rocket',
   },
   {
     title: 'Subscription Tracker',
     description: 'Full-stack application for managing and tracking subscription services',
     longDescription: 'A robust subscription management system with automated email notifications, secure API endpoints using ArcJet, and MongoDB for data persistence. Helps users track and manage their recurring subscriptions.',
-    techStack: ['Express.js', 'MongoDB', 'Nodemailer', 'ArcJet'],
+    techStack: ['Express.js', 'MongoDB', 'Nodemailer', 'ArcJet', 'Node.js'],
     githubUrl: 'https://github.com/DipHldr/subscription-tracker-backend',
     gradient: 'from-violet-500 to-fuchsia-600',
+    icon: 'CreditCard',
   },
   {
     title: 'MovieMania',
@@ -29,15 +31,17 @@ const projects = [
     githubUrl: 'https://github.com/DipHldr/movieapp',
     liveUrl: 'https://movieapp-ten-amber.vercel.app/',
     gradient: 'from-red-500 to-pink-600',
+    icon: 'Film',
   },
   {
     title: 'AI Resume Analyzer',
     description: 'Smart resume analysis tool with AI-powered recommendations',
     longDescription: 'An AI-powered resume analysis tool that provides intelligent feedback and recommendations. Features modern state management with Zustand, client-side routing, and integration with Puter for file processing.',
-    techStack: ['React Router', 'Zustand', 'Puter', 'AI/ML'],
+    techStack: ['React Router', 'Zustand', 'Puter', 'Tailwind CSS', 'AI/ML'],
     githubUrl: 'https://github.com/DipHldr/AI-Based-Resume-Analyser',
     liveUrl: 'https://ai-based-resume-analyser-khaki.vercel.app/',
     gradient: 'from-green-500 to-emerald-600',
+    icon: 'Brain',
   },
   {
     title: 'Chess Engine',
@@ -46,14 +50,16 @@ const projects = [
     techStack: ['C++', 'Bitboards', 'Minimax', 'Alpha-Beta Pruning'],
     githubUrl: 'https://github.com/DipHldr/chess_engine',
     gradient: 'from-slate-500 to-zinc-700',
+    icon: 'Crown',
   },
   {
     title: 'Wireless Sensor Network Optimization',
     description: 'Wireless Sensor Network optimization using Ant Colony Algorithm',
     longDescription: 'Research project implementing Ant Colony Optimization algorithm to solve routing problems in Wireless Sensor Networks. Focuses on energy efficiency and network lifetime optimization with comprehensive performance analysis.',
-    techStack: ['Python', 'ACO Algorithm', 'Metaheuristics'],
+    techStack: ['Python', 'ACO Algorithm', 'Metaheuristics', 'NetworkX', 'Data Analysis'],
     githubUrl: 'https://github.com/DipHldr/Computer_Networks',
     gradient: 'from-orange-500 to-amber-600',
+    icon: 'Network',
   },
 ];
 
@@ -80,7 +86,7 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5 }}
@@ -88,14 +94,14 @@ export default function Projects() {
           >
             <Rocket className="w-4 h-4 text-cyan-400" />
             <span className="text-sm font-medium text-cyan-400">Featured Work</span>
-          </motion.div> */}
+          </motion.div>
 
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className=" bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-              Featured
+            <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+              Selected
             </span>
-            {/* <br /> */}
-            <span className="ml-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent">
+            <br />
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent">
               Projects
             </span>
           </h2>

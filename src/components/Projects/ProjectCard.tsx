@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, MouseEvent } from 'react';
-import { ExternalLink, Github, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Rocket, CreditCard, Film, Brain, Crown, Network } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -10,7 +10,17 @@ interface Project {
   githubUrl: string;
   liveUrl?: string;
   gradient: string;
+  icon: string;
 }
+
+const iconMap = {
+  Rocket,
+  CreditCard,
+  Film,
+  Brain,
+  Crown,
+  Network,
+};
 
 interface ProjectCardProps {
   project: Project;
@@ -32,6 +42,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     setMousePosition({ x: 50, y: 50 });
     setIsFlipped(false);
   };
+
+  const IconComponent = iconMap[project.icon as keyof typeof iconMap] || Rocket;
 
   return (
     <motion.div
@@ -81,9 +93,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               <div className="relative h-full p-8 flex flex-col justify-between z-10">
                 <div>
                   <div className="flex items-start justify-between mb-4">
-                    <div className={`p-3 rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg`}>
-                      <Sparkles className="w-6 h-6 text-white" />
-                    </div>
+                    <motion.div
+                      whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                      className={`p-3 rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg`}
+                    >
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </motion.div>
                     <motion.div
                       className="text-xs font-medium text-gray-400 bg-gray-800/50 px-3 py-1.5 rounded-full border border-gray-700/50"
                       whileHover={{ scale: 1.05 }}
